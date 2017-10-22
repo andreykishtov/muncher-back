@@ -54,7 +54,6 @@ module.exports = {
         if (!req.body.password) {
             return res.status(200).json({ message: 'password id is mandatory' });
         }
-        // generate token
         const token = signToken(req.user);
         return res.status(200).json({ token });
     },
