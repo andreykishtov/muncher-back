@@ -1,0 +1,6 @@
+*.gz
+*.tar
+*~
+*.zip
+*.bak
+node_modules

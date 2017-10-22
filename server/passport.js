@@ -5,7 +5,6 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/users');
 const { JWT_SECRET } = require('./configuration');
 
-//JSON web tokens strategy
 passport.use(
     new JwtStrategy(
         {
@@ -14,15 +13,10 @@ passport.use(
         },
         async (payLoad, done) => {
             try {
-                // Find the user specified in token
                 const user = await User.findById(payLoad.sub);
-
-                // If user doesn't exists handle it
                 if (!user) {
                     return done(null, false);
                 }
-
-                // Otherwise, return the user
                 done(null, user);
             } catch (error) {
                 done(error, false);
@@ -31,7 +25,6 @@ passport.use(
     )
 );
 
-//Local Strategy
 passport.use(
     new LocalStrategy(
         {
@@ -39,22 +32,14 @@ passport.use(
         },
         async (email, password, done) => {
             try {
-                // Find user given the email
                 const user = await User.findOne({ email });
-
-                // If not handle it
                 if (!user) {
                     return done(null, false);
                 }
-
-                // Check if the password is correct
                 const isMatch = await user.isValidPassword(password);
-
-                // if not , handle it
                 if (!isMatch) {
                     return done(null, false);
                 }
-                // Otherwise, return the user
                 done(null, user);
             } catch (error) {
                 done(error, false);

@@ -1,3 +1,3 @@
-module.exports={
-    JWT_SECRET:'TrippySecretWord'
-}
+module.exports = {
+    JWT_SECRET: 'TrippySecretWord'
+};
