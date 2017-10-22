@@ -1,6 +1,6 @@
 const router = require('express-promise-router')();
 
-const reviewController = require('../../controllers/reviews');
+const reviewController = require('../../../controllers/reviews');
 
 router
     .route('/')

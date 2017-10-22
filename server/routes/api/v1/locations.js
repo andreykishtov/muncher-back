@@ -1,6 +1,6 @@
 const router = require('express-promise-router')();
 
-const locationController = require('../../controllers/locations');
+const locationController = require('../../../controllers/locations');
 
 router
     .route('/')
