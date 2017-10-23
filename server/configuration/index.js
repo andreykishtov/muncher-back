@@ -1,4 +1,4 @@
 module.exports = {
-    JWT_SECRET: 'TrippySecretWord',
+    JWT_SECRET: 'M@chriojasiopdjao',
     JWT_ISS: 'muncher'
 };
