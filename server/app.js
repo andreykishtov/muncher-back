@@ -23,8 +23,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.use(API_URL.location, require(API_URL.locationsRoute));
-app.use(API_URL.users, require(API_URL.usersRoute));
-app.use(API_URL.reviews, require(API_URL.reviewsRoute));
+app.use(API_URL.v1.location, require(API_URL.v1.locationsRoute));
+app.use(API_URL.v1.users, require(API_URL.v1.usersRoute));
+app.use(API_URL.v1.reviews, require(API_URL.v1.reviewsRoute));
 
 module.exports = app;

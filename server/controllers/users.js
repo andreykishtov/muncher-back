@@ -1,6 +1,7 @@
 const JWT = require('jsonwebtoken');
 const Users = require('../models/users');
 const { JWT_SECRET } = require('../configuration');
+const MESSAGES = require('../helpers/messages');
 
 const signToken = user =>
     JWT.sign(
@@ -23,22 +24,24 @@ module.exports = {
         }
     },
     addUser: async (req, res) => {
-        if (!req.body.email) {
-            return res.status(200).json({ message: 'email id is mandatory' });
+        let email = req.body.email;
+        let password = req.body.password;
+        if (!email) {
+            return res.status(200).json({ message: MESSAGES.EMAIL_REQUIRED });
         }
-        if (!req.body.password) {
-            return res.status(200).json({ message: 'password id is mandatory' });
+        if (!password) {
+            return res.status(200).json({ message: MESSAGES.PASSWORD_REQUIRED });
         }
         const newUser = new Users(req.body);
         const user = await newUser.save();
-        return res.status(200).json({ user, message: 'Updated Successfully' });
+        return res.status(200).json({ user, message: MESSAGES.CREATED_SUCCESS });
     },
     signUp: async (req, res) => {
         const { email } = req.value.body;
 
         const foundUser = await Users.findOne({ email });
         if (foundUser) {
-            return res.status(403).json({ error: 'Email Allready in use' });
+            return res.status(403).json({ error: MESSAGES.EMAIL_TAKEN });
         }
 
         const newUser = new Users(req.value.body);
@@ -48,11 +51,13 @@ module.exports = {
         return res.status(200).json({ token });
     },
     signIn: async (req, res) => {
-        if (!req.body.email) {
-            return res.status(200).json({ message: 'email id is mandatory' });
+        let email = req.body.email;
+        let password = req.body.password;
+        if (!email) {
+            return res.status(200).json({ message: MESSAGES.EMAIL_REQUIRED });
         }
-        if (!req.body.password) {
-            return res.status(200).json({ message: 'password id is mandatory' });
+        if (!password) {
+            return res.status(200).json({ message: MESSAGES.PASSWORD_REQUIRED });
         }
         const token = signToken(req.user);
         return res.status(200).json({ token });

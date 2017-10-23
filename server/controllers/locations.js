@@ -16,14 +16,15 @@ module.exports = {
         const newLocations = new Locations(req.body);
         try {
             const location = await newLocations.save();
-            res.status(200).json({ location, message: 'Created Successfully' });
+            res.status(200).json({ location, message: MESSAGES.CREATED_SUCCESS });
         } catch (error) {
             res.send(error);
         }
     },
     getLocation: async (req, res) => {
         try {
-            const location = await Locations.findById({ _id: req.params.homeId }, '-__v').populate([
+            const homeId = req.params.homeId;
+            const location = await Locations.findById({ _id: homeId }, '-__v').populate([
                 { path: 'userId' },
                 { path: 'reviews', populate: { path: 'userId' } }
             ]);
