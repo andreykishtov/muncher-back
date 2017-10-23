@@ -2,14 +2,17 @@ const JWT = require('jsonwebtoken');
 const Users = require('../models/users');
 const { JWT_SECRET } = require('../configuration');
 const MESSAGES = require('../helpers/messages');
+const moment = require('moment');
 
 const signToken = user =>
     JWT.sign(
         {
             iss: 'Trippy',
             sub: user._id,
-            iat: new Date().getTime(),
-            exp: new Date().setDate(new Date().getDate() + 1)
+            iat: moment().format(),
+            exp: moment('2016-03-12 13:00:00')
+                .add(1, 'day')
+                .format()
         },
         JWT_SECRET
     );
