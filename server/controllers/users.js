@@ -7,7 +7,7 @@ const moment = require('moment');
 const signToken = user =>
     JWT.sign(
         {
-            iss: 'Trippy',
+            iss: 'muncher',
             sub: user._id,
             iat: moment().format(),
             exp: moment('2016-03-12 13:00:00')
@@ -20,7 +20,8 @@ const signToken = user =>
 module.exports = {
     getUser: async (req, res) => {
         try {
-            const user = await Users.findById({ _id: req.params.userId }, '-__v');
+            const userId = req.params.userId;
+            const user = await Users.findById({ _id: userId }, '-__v');
             res.status(200).json(user);
         } catch (error) {
             res.send(error);
