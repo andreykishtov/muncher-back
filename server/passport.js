@@ -11,15 +11,15 @@ passport.use(
             jwtFromRequest: ExtractJwt.fromHeader('authorization'),
             secretOrKey: JWT_SECRET
         },
-        async (payLoad, done) => {
+        async (payLoad, next) => {
             try {
                 const user = await User.findById(payLoad.sub);
                 if (!user) {
-                    return done(null, false);
+                    return next(null, false);
                 }
-                done(null, user);
+                next(null, user);
             } catch (error) {
-                done(error, false);
+                next(error, false);
             }
         }
     )
@@ -30,19 +30,19 @@ passport.use(
         {
             usernameField: 'email'
         },
-        async (email, password, done) => {
+        async (email, password, next) => {
             try {
                 const user = await User.findOne({ email });
                 if (!user) {
-                    return done(null, false);
+                    return next(null, false);
                 }
                 const isMatch = await user.isValidPassword(password);
                 if (!isMatch) {
-                    return done(null, false);
+                    return next(null, false);
                 }
-                done(null, user);
+                next(null, user);
             } catch (error) {
-                done(error, false);
+                next(error, false);
             }
         }
     )

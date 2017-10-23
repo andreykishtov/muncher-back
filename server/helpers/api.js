@@ -1,10 +1,10 @@
-module.exports = {
-    v1: {
-        location: '/api/locations',
-        users: '/api/users',
-        reviews: '/api/reviews',
-        locationsRoute: './routes/api/v1/locations',
-        usersRoute: './routes/api/v1/users',
-        reviewsRoute: './routes/api/v1/reviews'
-    }
+module.exports = version => {
+    return {
+        location: `/api/${version}/locations`,
+        users: `/api/${version}/users`,
+        reviews: `/api/${version}/reviews`,
+        locationsRoute: `./routes/api/${version}/locations`,
+        usersRoute: `./routes/api/${version}/users`,
+        reviewsRoute: `./routes/api/${version}/reviews`
+    };
 };

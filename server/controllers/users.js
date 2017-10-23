@@ -1,6 +1,6 @@
 const JWT = require('jsonwebtoken');
 const Users = require('../models/users');
-const { JWT_SECRET,JWT_ISS } = require('../configuration');
+const { JWT_SECRET, JWT_ISS } = require('../configuration');
 const MESSAGES = require('../helpers/messages');
 const moment = require('moment');
 
@@ -24,7 +24,7 @@ module.exports = {
             const user = await Users.findById({ _id: userId }, '-__v');
             res.status(200).json(user);
         } catch (error) {
-          res.status(400).json({ message : MESSAGES.USER_NOT_FOUND })
+            res.status(400).json({ message: MESSAGES.USER_NOT_FOUND });
         }
     },
     addUser: async (req, res) => {
@@ -55,14 +55,8 @@ module.exports = {
         return res.status(200).json({ token });
     },
     signIn: async (req, res) => {
-        let email = req.body.email;
-        let password = req.body.password;
-        if (!email) {
-            return res.status(200).json({ message: MESSAGES.EMAIL_REQUIRED });
-        }
-        if (!password) {
-            return res.status(200).json({ message: MESSAGES.PASSWORD_REQUIRED });
-        }
+        const email = req.body.email;
+        const password = req.body.password;
         const token = signToken(req.user);
         return res.status(200).json({ token });
     },
