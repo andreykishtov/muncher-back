@@ -1,13 +1,13 @@
 const JWT = require('jsonwebtoken');
 const Users = require('../models/users');
-const { JWT_SECRET } = require('../configuration');
+const { JWT_SECRET,JWT_ISS } = require('../configuration');
 const MESSAGES = require('../helpers/messages');
 const moment = require('moment');
 
 const signToken = user =>
     JWT.sign(
         {
-            iss: 'muncher',
+            iss: JWT_ISS,
             sub: user._id,
             iat: moment().format(),
             exp: moment('2016-03-12 13:00:00')
