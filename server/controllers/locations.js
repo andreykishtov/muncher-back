@@ -16,7 +16,7 @@ module.exports = {
         const newLocations = new Locations(req.body);
         try {
             const location = await newLocations.save();
-            res.status(200).json({ location, message: MESSAGES.CREATED_SUCCESS });
+            res.status(200).json({ location, message: MESSAGES.LOCATION_SUCCESS });
         } catch (error) {
             res.send(error);
         }

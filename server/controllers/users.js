@@ -24,7 +24,7 @@ module.exports = {
             const user = await Users.findById({ _id: userId }, '-__v');
             res.status(200).json(user);
         } catch (error) {
-            res.send(error);
+          res.status(400).json({ message : MESSAGES.USER_NOT_FOUND })
         }
     },
     addUser: async (req, res) => {

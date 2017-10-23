@@ -1,9 +1,10 @@
 module.exports = {
-    CREATED_SUCCESS: 'Created Successfully',
-    REVIEW_SUCCESS: 'Review added Successfully',
+    LOCATION_SUCCESS: 'Location created successfully',
+    REVIEW_SUCCESS: 'Review added successfully',
     USERID_REQUIRED: 'User id is mandatory',
-    LOCATION_REQUIRED: 'location id is mandatory',
-    EMAIL_REQUIRED: 'email id is mandatory',
-    PASSWORD_REQUIRED: 'password id is mandatory',
-    EMAIL_TAKEN:'Email Allready in use'
+    LOCATION_REQUIRED: 'Location id is mandatory',
+    EMAIL_REQUIRED: 'Email id is mandatory',
+    PASSWORD_REQUIRED: 'Password is mandatory',
+    EMAIL_TAKEN:'Email already in use',
+    USER_NOT_FOUND:'User not found'
 };
