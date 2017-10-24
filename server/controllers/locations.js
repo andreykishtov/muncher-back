@@ -13,8 +13,8 @@ module.exports = {
         }
     },
     addLocation: async (req, res) => {
-        const newLocations = new Locations(req.body);
         try {
+            const newLocations = new Locations(req.body);
             const location = await newLocations.save();
             res.status(200).json({ location, message: MESSAGES.LOCATION_SUCCESS });
         } catch (error) {
