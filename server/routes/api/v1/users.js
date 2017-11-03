@@ -1,22 +1,28 @@
-const router = require('express-promise-router')();
 const passport = require('passport');
+const passportConf = require('../../../passport')
 const { validateBody, schemas, isAuthorized } = require('../../../helpers/routeHelpers');
-const usersController = require('../../../controllers/users');
+const usersController = require('../../../controllers/users/index');
 
 const passportSignIn = passport.authenticate('local', { session: false });
 const passportJwt = passport.authenticate('jwt', { session: false });
 
-router.route('/signUp').post(validateBody(schemas.authSchema), usersController.signUp);
+module.exports = (router) => {
+    router.
+        route('/register')
+        .post(usersController.register);
+    router.
+        route('/login')
+        .post(passportSignIn, usersController.login);
 
-router.route('/signIn').post(validateBody(schemas.authSchema), passportSignIn, usersController.signIn);
+    router.
+        route('test').get(usersController.test)
+    router
+        .route('/:userId')
+        .get(usersController.getUser)
+        .post(passportJwt, isAuthorized, () => { })
+        .put(() => { })
+        .delete(() => { });
 
-router.route('/secret').get(passportJwt, usersController.secret);
 
-router
-    .route('/:userId')
-    .get(usersController.getUser)
-    .post(passportJwt, isAuthorized, usersController.getUser)
-    .put(() => {})
-    .delete(() => {});
-
-module.exports = router;
+    return router;
+};

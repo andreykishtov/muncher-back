@@ -6,5 +6,7 @@ module.exports = {
     EMAIL_REQUIRED: 'Email is mandatory',
     PASSWORD_REQUIRED: 'Password is mandatory',
     EMAIL_TAKEN:'Email already in use',
-    USER_NOT_FOUND:'User not found'
+    USER_NOT_FOUND:'User not found',
+    CREATED_SUCCESS: 'User Created',
+    GENERAL_ERROR:'Opps some error'
 };
