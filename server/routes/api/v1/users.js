@@ -14,7 +14,8 @@ module.exports = (router) => {
         .post(passportSignIn, usersController.login);
 
     router.
-        route('test').get(usersController.test)
+        route('test').get(passportJwt, usersController.test);
+
     router
         .route('/:userId')
         .get(usersController.getUser)

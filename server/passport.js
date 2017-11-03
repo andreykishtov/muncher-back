@@ -13,7 +13,7 @@ passport.use(
         },
         async (payLoad, done) => {
             try {
-                const user = await User.findById(payLoad.sub);
+                const user = await User.findById(payLoad.id);
                 if(!user) {
                     return done(null, false);
                 }
@@ -34,7 +34,7 @@ passport.use(
             try {
                 const user = await User.findOne({ email });
                 if(!user) {
-                    return done(null, false, { message: 'Incorrect password.' });
+                    return done(null, false, { message: 'Incorrect email.' });
                 }
                 const isMatch = await user.isValidPassword(password);
                 if(!isMatch) {
