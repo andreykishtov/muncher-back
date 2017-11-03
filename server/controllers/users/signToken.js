@@ -10,7 +10,8 @@ module.exports = async user => {
       {
         iss: JWT_ISS,
         id: user._id,
-        email: user.email,
+        role: user.role,
+        userName: user.userName,
         iat: parseInt(now.format('x')),
         exp: parseInt(now.format('x'))
       },

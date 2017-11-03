@@ -8,5 +8,7 @@ module.exports = {
     EMAIL_TAKEN:'Email already in use',
     USER_NOT_FOUND:'User not found',
     CREATED_SUCCESS: 'User Created',
-    GENERAL_ERROR:'Opps some error'
+    NOT_AUTHORIZED: 'Sorry you are not authorized to do that action',
+    GENERAL_ERROR:'Opps some error',
+    
 };

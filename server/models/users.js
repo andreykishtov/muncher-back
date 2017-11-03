@@ -28,7 +28,10 @@ const Users = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'locations'
         }
-    ]
+    ],
+    role: String,
+    userName: String
+
 });
 
 Users.pre('save', async function(next) {

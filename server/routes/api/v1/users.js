@@ -14,14 +14,15 @@ module.exports = (router) => {
         .post(passportSignIn, usersController.login);
 
     router.
-        route('test').get(passportJwt, isAuthorized, usersController.test);
+        route('/test')
+        .get(passportJwt, isAuthorized, usersController.test);
 
-    router
-        .route('/:userId')
-        .get(usersController.getUser)
-        .post(passportJwt, isAuthorized, () => { })
-        .put(() => { })
-        .delete(() => { });
+    router.
+       route('/:userId')
+      .get(usersController.getUser)
+      .post(passportJwt, isAuthorized, () => {})
+      .put(passportJwt, isAuthorized, usersController.updateUser)
+      .delete(passportJwt, isAuthorized, () => {});
 
     return router;
 };

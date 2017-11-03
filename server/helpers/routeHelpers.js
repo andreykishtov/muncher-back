@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const JWT = require('jsonwebtoken');
+const MESSAGE = require('./messages');
 
 module.exports = {
     validateBody: schema => (req, res, next) => {
@@ -14,15 +15,21 @@ module.exports = {
         return next();
     },
     isAuthorized: (req, res, next) => {
-        // TODO: refactor this function to work both on params and body
-        const { userId } = req.params;
+        const userIdFromParams = req.params.userId;
+        const userIdFromBody = req.body.id;
+        const userIdFromParam = req.query.id;
         const { authorization } = req.headers;
 
         const decodedToken = JWT.decode(authorization, { complete: true });
-        const userTokenId = decodedToken.payload.id;
+        const userIdFromToken = decodedToken.payload.id;
+        const isTheUser = (
+            (userIdFromParams === userIdFromToken)  
+            || (userIdFromBody === userIdFromToken)
+            || (userIdFromParam === userIdFromToken)
+        );
 
-        if(userId !== userTokenId) {
-            return res.status(401).json({ message: 'Nope, you can\'t go there\', route: \'/' });
+        if(!isTheUser) {
+            return res.status(401).json({ message: MESSAGE.NOT_AUTHORIZED });
         }
 
         return next();
