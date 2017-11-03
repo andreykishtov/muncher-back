@@ -16,5 +16,9 @@ exports.schemas = {
   loginUserValidation: Joi.object().keys({
     email: Joi.string().email().required(),
     password: Joi.string().required(),
+  }),
+  beforeUpdateUserValidation: Joi.object().keys({
+    local: Joi.any().forbidden(),
+    method: Joi.any().forbidden()
   })
 }

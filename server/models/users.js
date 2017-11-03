@@ -38,7 +38,6 @@ const Users = new Schema({
   ],
   role: String,
   userName: String
-
 });
 
 Users.pre('save', async function (next) {

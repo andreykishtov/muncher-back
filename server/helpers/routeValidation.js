@@ -1,8 +1,8 @@
 const Joi = require('joi');
 const MESSAGE = require('./messages');
 
-exports.validateBody = schema => (req, res, next) => {
-  const result = Joi.validate(req.body, schema);
+exports.validateBody = (schema, options) => (req, res, next) => {
+  const result = Joi.validate(req.body, schema, options);
   if(result.error) {
     return res.status(400).json(result.error);
   }
@@ -12,4 +12,3 @@ exports.validateBody = schema => (req, res, next) => {
   req.value.body = result.value;
   return next();
 };
-

@@ -22,8 +22,7 @@ module.exports = (router) => {
   router.
     route('/:userId')
     .get(usersController.getUser)
-    .post(passportJwt, isAuthorizedUser, () => { })
-    .put(passportJwt, isAuthorizedUser, usersController.updateUser)
+    .put(passportJwt, validateBody(schemas.beforeUpdateUserValidation, {'allowUnknown':true }), isAuthorizedUser, usersController.updateUser)
     .delete(passportJwt, isAuthorizedUser, usersController.deleteUser);
 
   return router;

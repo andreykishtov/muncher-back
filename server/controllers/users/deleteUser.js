@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
   try {
     const user = await Users.findByIdAndRemove({ _id });
-    return res.status(201).json({ message: MESSAGES.USER_REMOVED });
+    return res.status(201).json({ success: true, message: MESSAGES.USER_REMOVED });
   } catch(error) {
     console.log(error);
   }

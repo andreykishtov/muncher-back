@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
       email: savedUser.local.email
     }
 
-    return res.status(201).json({ token, user, message: MESSAGES.CREATED_SUCCESS });
+    return res.status(201).json({ success: true, token, user, message: MESSAGES.CREATED_SUCCESS });
 
   } catch(error) {
     console.log(error)

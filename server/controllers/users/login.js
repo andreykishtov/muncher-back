@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
     const { userName, email, role } = req.user;
 
     const token = await signToken(req.user);
-    return res.status(200).json({ token, user: { userName, email, role }, message: 'ok' });
+    return res.status(200).json({ success: true, token, user: { userName, email, role }, message: 'ok' });
   } catch(error) {
     console.log(error)
   }
