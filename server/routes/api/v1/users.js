@@ -13,7 +13,7 @@ module.exports = (router) => {
     .post(validateBody(schemas.registerUserValidation), usersController.register);
   router.
     route('/login')
-    .post(validateBody(schemas.registerUserValidation), passportSignIn, usersController.login);
+    .post(validateBody(schemas.loginUserValidation), passportSignIn, usersController.login);
 
   router.
     route('/test')
