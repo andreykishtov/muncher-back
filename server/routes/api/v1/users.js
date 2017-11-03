@@ -1,28 +1,30 @@
 const passport = require('passport');
 const passportConf = require('../../../passport')
-const { validateBody, schemas, isAuthorized } = require('../../../helpers/routeHelpers');
+const { validateBody } = require('../../../helpers/routeValidation');
+const { schemas } = require('../../../helpers/validationSchemas');
+const { isAuthorizedUser } = require('../../../helpers/authorizations')
 const usersController = require('../../../controllers/users/index');
 const passportSignIn = passport.authenticate('local', { session: false });
 const passportJwt = passport.authenticate('jwt', { session: false });
 
 module.exports = (router) => {
-    router.
-        route('/register')
-        .post(usersController.register);
-    router.
-        route('/login')
-        .post(passportSignIn, usersController.login);
+  router.
+    route('/register')
+    .post(validateBody(schemas.registerUserValidation), usersController.register);
+  router.
+    route('/login')
+    .post(validateBody(schemas.registerUserValidation), passportSignIn, usersController.login);
 
-    router.
-        route('/test')
-        .get(passportJwt, isAuthorized, usersController.test);
+  router.
+    route('/test')
+    .get(passportJwt, isAuthorizedUser, usersController.test);
 
-    router.
-       route('/:userId')
-      .get(usersController.getUser)
-      .post(passportJwt, isAuthorized, () => {})
-      .put(passportJwt, isAuthorized, usersController.updateUser)
-      .delete(passportJwt, isAuthorized, () => {});
+  router.
+    route('/:userId')
+    .get(usersController.getUser)
+    .post(passportJwt, isAuthorizedUser, () => { })
+    .put(passportJwt, isAuthorizedUser, usersController.updateUser)
+    .delete(passportJwt, isAuthorizedUser, usersController.deleteUser);
 
-    return router;
+  return router;
 };

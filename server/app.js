@@ -8,16 +8,16 @@ const mongoose = require('mongoose');
 const API_URL = require('./helpers/api')('v1');
 
 mongoose.Promise = global.Promise;
-if (process.env.NODE_ENV === 'test') {
-    mongoose.connect('mongodb://localhost/muncher-test', { useMongoClient: true });
+if(process.env.NODE_ENV === 'test') {
+  mongoose.connect('mongodb://localhost/muncher-test', { useMongoClient: true });
 } else {
-    mongoose.connect('mongodb://localhost/muncher', { useMongoClient: true });
+  mongoose.connect('mongodb://localhost/muncher', { useMongoClient: true });
 }
 
 const app = express();
 
-if (process.env.NODE_ENV !== 'test') {
-    app.use(morgan('dev'));
+if(process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev'));
 }
 
 app.use(bodyParser.json());
