@@ -32,7 +32,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ 'local.email': email });
         if(!user) {
           return done(null, false, { message: 'Incorrect email.' });
         }

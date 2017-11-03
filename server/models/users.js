@@ -4,18 +4,25 @@ const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
 const Users = new Schema({
+  method: {
+    type: String,
+    enum: ['local', 'google', 'facebook'],
+    required: true
+  },
+  local: {
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String,
+      required: true
+    }
+  },
   imageUrl: String,
   name: {
     first: String,
     last: String
-  },
-  email: {
-    type: String,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
   },
   reviews: [
     {
@@ -37,7 +44,7 @@ const Users = new Schema({
 Users.pre('save', async function (next) {
   try {
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(this.local.password, salt);
     next();
   } catch(error) {
     next(error);
