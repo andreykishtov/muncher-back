@@ -1,4 +1,5 @@
 const JWT = require('jsonwebtoken');
+const MESSAGES = require('../helpers/messages');
 
 exports.isAuthorizedUser = (req, res, next) => {
   const userIdFromParams = req.params.userId;
