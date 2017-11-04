@@ -3,7 +3,7 @@ const Users = require('../../models/users');
 const signToken = require('./signToken');
 
 module.exports = async (req, res) => {
-  const { _id } = req.user;
+  const { _id, userName } = req.user;
 
   try {
     const user = await Users.findByIdAndRemove({ _id });
