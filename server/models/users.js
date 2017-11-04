@@ -43,7 +43,7 @@ const Users = new Schema({
 Users.pre('save', async function (next) {
   try {
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.local.password, salt);
+    this.local.password = await bcrypt.hash(this.local.password, salt);
     next();
   } catch(error) {
     next(error);
@@ -52,7 +52,7 @@ Users.pre('save', async function (next) {
 
 Users.methods.isValidPassword = async function (newPassword) {
   try {
-    return await bcrypt.compare(newPassword, this.password);
+    return await bcrypt.compare(newPassword, this.local.password);
   } catch(error) {
     throw new Error(error);
   }
