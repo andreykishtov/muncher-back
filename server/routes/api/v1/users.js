@@ -22,7 +22,7 @@ module.exports = (router) => {
   router.
     route('/:userId')
     .get(usersController.getUser)
-    .put(passportJwt, validateBody(schemas.beforeUpdateUserValidation, {'allowUnknown':true }), isAuthorizedUser, usersController.updateUser)
+    .put(passportJwt, validateBody(schemas.beforeUpdateUserValidation, { 'allowUnknown': true }), isAuthorizedUser, usersController.updateUser)
     .delete(passportJwt, isAuthorizedUser, usersController.deleteUser);
 
   return router;
