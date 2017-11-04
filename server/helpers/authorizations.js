@@ -3,7 +3,7 @@ const JWT = require('jsonwebtoken');
 exports.isAuthorizedUser = (req, res, next) => {
   const userIdFromParams = req.params.userId;
   const userIdFromBody = req.body.id;
-  const userIdFromJoi = req.value.body.id;
+  const userIdFromJoi = (req.value && req.value.body.id);
   const userIdFromParam = req.query.id;
   const { authorization } = req.headers;
 
