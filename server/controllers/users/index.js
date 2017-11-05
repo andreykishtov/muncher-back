@@ -1,4 +1,5 @@
 module.exports = {
+  getAll: require('./getAllUsers'),
   register: require('./register'),
   login: require('./login'),
   getUser: require('./getUser'),

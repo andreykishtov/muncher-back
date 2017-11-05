@@ -20,6 +20,10 @@ module.exports = (router) => {
     .get(passportJwt, isAuthorizedUser, usersController.test);
 
   router.
+    route('/')
+    .get(usersController.getAll);
+
+  router.
     route('/:userId')
     .get(usersController.getUser)
     .put(passportJwt, validateBody(schemas.beforeUpdateUserValidation, { 'allowUnknown': true }), isAuthorizedUser, usersController.updateUser)
