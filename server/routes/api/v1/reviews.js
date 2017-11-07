@@ -9,11 +9,9 @@ module.exports = (router) => {
   router
     .route('/:reviewId')
     .get(reviewController.getReview)
-    .post(() => { })
     .put(() => { })
     .delete(() => { });
 
-  router.route('/:reviewId').get(reviewController.getReview);
 
   return router;
 }

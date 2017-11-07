@@ -1,9 +1,9 @@
-const locationController = require('../../../controllers/createCustomer/index');
+const createCustomer = require('../../../controllers/createCustomer/');
 
 module.exports = router => {
   router
     .route('/')
-    .post(locationController.addLocation);
+    .post(createCustomer.createCustomerWithLocation);
 
   return router;
 };
