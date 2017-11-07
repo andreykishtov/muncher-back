@@ -1,15 +1,15 @@
 const locationController = require('../../../controllers/locations');
+const router = require('express').Router();
 
-module.exports = router => {
   router
     .route('/')
     .get(locationController.getLocations)
-    // .post(locationController.addLocation)
+    .post(locationController.addLocation)
     .put(() => false)
     .delete(() => false);
 
   router
     .route('/:homeId').get(locationController.getLocation);
 
-  return router;
-};
+    module.exports = router;
+

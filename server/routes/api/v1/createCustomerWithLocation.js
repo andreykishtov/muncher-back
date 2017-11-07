@@ -1,9 +1,8 @@
 const createCustomer = require('../../../controllers/createCustomer/');
+const router = require('express').Router();
 
-module.exports = router => {
-  router
+router
     .route('/')
     .post(createCustomer.createCustomerWithLocation);
 
-  return router;
-};
+ module.exports = router
