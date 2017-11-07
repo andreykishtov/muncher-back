@@ -1,4 +1,4 @@
-const Review = require('../models/review');
+const Review = require('../models/reviews');
 const Locations = require('../models/locations');
 const User = require('../models/users');
 const MESSAGES = require('../helpers/messages');

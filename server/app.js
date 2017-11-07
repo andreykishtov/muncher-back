@@ -29,5 +29,6 @@ app.use(cors());
 app.use(API_URL.users, require(API_URL.usersRoute)(router));
 app.use(API_URL.location, require(API_URL.locationsRoute)(router));
 app.use(API_URL.reviews, require(API_URL.reviewsRoute)(router));
+app.use(API_URL.createCustomerWithLocation, require(API_URL.reviewsRoute)(router));
 
 module.exports = app;
