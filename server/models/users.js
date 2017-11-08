@@ -37,7 +37,7 @@ const Users = new Schema({
       ref: 'locations'
     }
   ],
-  role: String,
+  role: { type: Number, default: 3 },
   userName: String,
   createDate: { type: Date, default: Date.now },
   updateDate: { type: Date, default: Date.now }
