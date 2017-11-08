@@ -24,7 +24,9 @@ const LocationsSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'review'
     }
-  ]
+  ],
+  createDate: { type: Date, default: Date.now },
+  updateDate: { type: Date, default: Date.now }
 });
 
 const Location = mongoose.model('location', LocationsSchema);
