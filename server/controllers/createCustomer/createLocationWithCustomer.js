@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
   }
 
   // flow of creation
-  const { email, password } = req.body.customer.info;
+  const { email } = req.body.customer.info;
   const { location } = req.body.customer;
 
   // a. find user in our data base
@@ -42,6 +42,7 @@ module.exports = async (req, res) => {
 
     const newLocation  = new Location(location);
     const savedLocation = await newLocations.save();
+    Users.findByIdAndUpdate({ _id:owner._id }, { $push: { location: savedLocation._id } }, { new: true });
     res.status(200).json({ success: true, message: 'Location added to user' })
   }
 
