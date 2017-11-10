@@ -7,7 +7,7 @@ exports.canCreateUser = (req, res, next) => {
   const { token } = req.body;
 
   const userRole = authorization || token;
-  debugger
+
   if(!userRole) {
     return res.status(401).json({ message: MESSAGE.NOT_AUTHORIZED });
   }
@@ -15,6 +15,7 @@ exports.canCreateUser = (req, res, next) => {
   const decodedToken = JWT.decode(userRole, { complete: true });
 
   const { role } = decodedToken.payload;
+
   const isAdmin = role === ROLES.admin;
   const isDev = role === ROLES.developer;
   const isMod = role === ROLES.moderator;
