@@ -1,5 +1,5 @@
 const JWT = require('jsonwebtoken');
-const MESSAGES = require('../messages');
+const MESSAGE = require('../messages');
 const ROLES = require('../roles');
 
 exports.canCreateUser = (req, res, next) => {
