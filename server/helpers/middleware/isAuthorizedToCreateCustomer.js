@@ -1,7 +1,8 @@
 const JWT = require('jsonwebtoken');
-const MESSAGES = require('../helpers/messages');
+const MESSAGES = require('../messages');
 const ROLES = require('../roles');
-exports.isAuthorizedUser = (req, res, next) => {
+
+exports.canCreateUser = (req, res, next) => {
   const { authorization } = req.headers;
   const { token } = req.body;
 
@@ -15,8 +16,8 @@ exports.isAuthorizedUser = (req, res, next) => {
 
   const { role } = decodedToken.payload;
 
-  if (role != ROLES.admin || role != ROLES.developer || role != ROLES.moderator) {
-    return  res.status(401).json({ message: MESSAGE.NOT_AUTHORIZED });
+  if (role !== ROLES.admin || role !== ROLES.developer || role !== ROLES.moderator) {
+    return res.status(401).json({ message: MESSAGE.NOT_AUTHORIZED });
   }
 
   return next();
