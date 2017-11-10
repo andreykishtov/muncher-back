@@ -1,6 +1,7 @@
 const reviewController = require('../../../controllers/reviews');
+const router = require('express').Router();
 
-module.exports = (router) => {
+
   router
     .route('/')
     .get(reviewController.getReviews)
@@ -9,11 +10,9 @@ module.exports = (router) => {
   router
     .route('/:reviewId')
     .get(reviewController.getReview)
-    .post(() => { })
     .put(() => { })
     .delete(() => { });
 
-  router.route('/:reviewId').get(reviewController.getReview);
 
-  return router;
-}
+    module.exports = router;
+

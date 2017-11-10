@@ -16,8 +16,7 @@ const Users = new Schema({
     },
     password: {
       type: String,
-      required: true,
-      select: false
+      required: true
     }
   },
   imageUrl: String,
@@ -37,24 +36,26 @@ const Users = new Schema({
       ref: 'locations'
     }
   ],
-  role: String,
-  userName: String
+  role: { type: Number, default: 3 },
+  userName: String,
+  createDate: { type: Date, default: Date.now },
+  updateDate: { type: Date, default: Date.now }
 });
 
-Users.pre('save', async function (next) {
+Users.pre('save', async function(next) {
   try {
     const salt = await bcrypt.genSalt(10);
     this.local.password = await bcrypt.hash(this.local.password, salt);
     next();
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
 });
 
-Users.methods.isValidPassword = async function (newPassword) {
+Users.methods.isValidPassword = async function(newPassword) {
   try {
     return await bcrypt.compare(newPassword, this.local.password);
-  } catch(error) {
+  } catch (error) {
     throw new Error(error);
   }
 };

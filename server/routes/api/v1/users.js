@@ -1,3 +1,4 @@
+const router = require('express').Router();
 const passport = require('passport');
 const passportConf = require('../../../passport')
 const { validateBody } = require('../../../helpers/routeValidation');
@@ -7,7 +8,7 @@ const usersController = require('../../../controllers/users/index');
 const passportSignIn = passport.authenticate('local', { session: false });
 const passportJwt = passport.authenticate('jwt', { session: false });
 
-module.exports = (router) => {
+
   router.
     route('/register')
     .post(validateBody(schemas.registerUserValidation), usersController.register);
@@ -29,5 +30,5 @@ module.exports = (router) => {
     .put(passportJwt, validateBody(schemas.beforeUpdateUserValidation, { 'allowUnknown': true }), isAuthorizedUser, usersController.updateUser)
     .delete(passportJwt, isAuthorizedUser, usersController.deleteUser);
 
-  return router;
-};
+    module.exports =  router;
+

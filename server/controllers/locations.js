@@ -22,6 +22,7 @@ module.exports = {
     }
   },
   getLocation: async (req, res) => {
+    console.log('shit');
     try {
       const homeId = req.params.homeId;
       const location = await Locations.findById({ _id: homeId }, '-__v').populate([

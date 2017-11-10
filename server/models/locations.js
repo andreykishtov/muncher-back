@@ -3,22 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const LocationsSchema = new Schema({
-  title: String,
-  type: String,
+  name: String,
+  type: String, //[takeaway,restaurant,delevaryOnly]
   generalDesc: String,
-  guestAccess: String,
-  owner: String,
-  price: Number,
-  currency: String,
-  amenities: [
-    {
-      type: String
-    }
-  ],
-  imageUrl: {
-    type: String
-  },
-  userId: {
+  imageUrl: String,
+  owner: {
     type: Schema.Types.ObjectId,
     ref: 'user'
   },
@@ -30,23 +19,16 @@ const LocationsSchema = new Schema({
     lat: Number,
     lng: Number
   },
-  theSpace: {
-    description: String,
-    guests: Number,
-    beds: Number,
-    bedrooms: Number
-  },
-  occupancy: {
-    type: String
-  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
       ref: 'review'
     }
-  ]
+  ],
+  createDate: { type: Date, default: Date.now },
+  updateDate: { type: Date, default: Date.now }
 });
 
-const location = mongoose.model('location', LocationsSchema);
+const Location = mongoose.model('location', LocationsSchema);
 
-module.exports = location;
+module.exports = Location;

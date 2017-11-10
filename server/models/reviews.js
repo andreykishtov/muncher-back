@@ -6,7 +6,7 @@ const ReviewSchema = new Schema({
   title: String,
   content: String,
   rating: Number,
-  date: String,
+  date: { type: Date, default: Date.now },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
@@ -16,7 +16,9 @@ const ReviewSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'location',
     required: true
-  }
+  },
+  createDate: { type: Date, default: Date.now },
+  updateDate: { type: Date, default: Date.now }
 });
 
 const Review = mongoose.model('review', ReviewSchema);
