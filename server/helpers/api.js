@@ -7,6 +7,6 @@ module.exports = version => {
     reviews: `/api/${version}/reviews`,
     reviewsRoute: `./routes/api/${version}/reviews`,
     createCustomerWithLocation: `/api/${version}/create/customer-with-location`,
-    createCustomerWithLocationRoute: `./routes/api/${version}/createCustomerWithLocation`
+    createCustomerWithLocationRoute: `./routes/api/${version}/createLocationWithCustomer`
   };
 };
