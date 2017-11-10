@@ -11,7 +11,8 @@ exports.schemas = {
     }),
     userName: Joi.string(),
     reviews: Joi.array(),
-    locations: Joi.array()
+    locations: Joi.array(),
+    role:Joi.number()
   }),
   loginUserValidation: Joi.object().keys({
     email: Joi.string().email().required(),
