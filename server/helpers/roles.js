@@ -1,8 +1,8 @@
 module.exports = {
-  member: 1,
-  owner: 2,
-  user: 3,
-  moderator: 4,
-  developer: 5,
-  admin: 6
+  MEMBER: 1,
+  OWNER: 2,
+  USER: 3,
+  MODERATOR: 4,
+  DEVELOPER: 5,
+  ADMIN: 6
 };

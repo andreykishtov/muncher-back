@@ -2,6 +2,7 @@ const MESSAGES = require('../../helpers/messages');
 const Users = require('../../models/users');
 const Location = require('../../models/locations');
 const Review = require('../../models/reviews');
+const Roles = require('../../helpers/roles.js')
 
 module.exports = async (req, res) => {
   if (!req.body.customer) {
@@ -24,7 +25,7 @@ module.exports = async (req, res) => {
 
     if (!owner) {
       const { password } = req.body.customer.info;
-      const { role } = req.body.customer.info.role || 2
+      const { role } = req.body.customer.info.role || Roles.OWNER;
       const newUser = new Users({
         method: 'local',
         local: { email, password },
