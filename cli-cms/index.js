@@ -1,5 +1,5 @@
 const program = require('commander');
-const { prompt } = require('inquirer');
+const { prompt ,Separator } = require('inquirer');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 const { createCustomerWithLocation } = require('../server/controllers/createCustomer/');
@@ -11,12 +11,12 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connect('mongodb://localhost/muncher', { useMongoClient: true });
 const log = console.log;
 
-const questions = [
+const add_questions = [
   {
     type: 'list',
     name: 'add',
     message: 'What would you like to add?',
-    choices: ['admin', 'user', 'customer-with-location', 'customer-with-five-locations', 'exit']
+    choices: ['admin', 'user', 'customer-with-location', 'customer-with-five-locations', new Separator(), 'exit']
   }
 ];
 
@@ -38,7 +38,7 @@ program
   .description('Add items to our app')
   .action(async () => {
     try {
-      const answer = await prompt(questions);
+      const answer = await prompt(add_questions);
       switch (answer.add) {
         case 'customer-with-location':
           await createCustomerWithLocation(fake_customerWithLocation, response);
