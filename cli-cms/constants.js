@@ -38,5 +38,6 @@ const fake_user = (role) => ({
 
 module.exports = {
   fake_customerWithLocation,
-  fake_user
+  fake_user,
+  types
 };

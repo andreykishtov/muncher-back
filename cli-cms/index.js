@@ -1,11 +1,12 @@
 const program = require('commander');
-const { prompt ,Separator } = require('inquirer');
+const { prompt, Separator } = require('inquirer');
 const mongoose = require('mongoose');
 const chalk = require('chalk');
 const { createCustomerWithLocation } = require('../server/controllers/createCustomer/');
 const { register } = require('../server/controllers/users/');
-const { fake_customerWithLocation, fake_user } = require('./constants');
-
+const { fake_customerWithLocation, fake_user, types } = require('./constants');
+const _ = require('lodash');
+const faker = require('faker');
 
 mongoose.Promise = global.Promise;
 const db = mongoose.connect('mongodb://localhost/muncher', { useMongoClient: true });
@@ -16,7 +17,7 @@ const add_questions = [
     type: 'list',
     name: 'add',
     message: 'What would you like to add?',
-    choices: ['admin', 'user', 'customer-with-location', 'customer-with-five-locations', new Separator(), 'exit']
+    choices: ['admin', 'user', 'customer-with-location', '30-customers-with-locations', new Separator(), 'exit']
   }
 ];
 
@@ -44,11 +45,38 @@ program
           await createCustomerWithLocation(fake_customerWithLocation, response);
           db.close();
           return process.exit(0);
-        case 'customer-with-five-locations':
-          let counter = 5;
-          while(counter){
-            await createCustomerWithLocation(fake_customerWithLocation, response)
+        case '30-customers-with-locations':
+          let counter = 30;
+          while (counter) {
+            await createCustomerWithLocation(
+              {
+                body: {
+                  customer: {
+                    info: {
+                      email: faker.internet.email(),
+                      password: 'muncher'
+                    },
+                    location: {
+                      name: faker.name.findName(),
+                      type: types[faker.random.number({ min: 0, max: 3 })],
+                      generalDesc: faker.lorem.sentence(),
+                      imageUrl: faker.image.imageUrl(),
+                      address: {
+                        country: faker.address.country(),
+                        city: faker.address.city(),
+                        street: faker.address.streetAddress(),
+                        number: faker.random.number(),
+                        lat: faker.address.latitude(),
+                        lng: faker.address.longitude()
+                      }
+                    }
+                  }
+                }
+              },
+              response
+            );
             counter--;
+            log(chalk.cyan('Left', counter));
           }
           db.close();
           return process.exit(0);
@@ -68,7 +96,7 @@ program
           process.exit(0);
       }
     } catch (e) {
-      log(chalk.red('Error adding'), JSON.stringify(e, null, 2));
+      log(chalk.red('Error adding'), e);
       db.close();
       process.exit(1);
     }
