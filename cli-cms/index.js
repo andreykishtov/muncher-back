@@ -5,6 +5,7 @@ const chalk = require('chalk');
 const { createCustomerWithLocation } = require('../server/controllers/createCustomer/');
 const { register } = require('../server/controllers/users/');
 const { fake_customerWithLocation, fake_user } = require('./constants');
+const _ = require('lodash');
 
 mongoose.Promise = global.Promise;
 const db = mongoose.connect('mongodb://localhost/muncher', { useMongoClient: true });
@@ -15,7 +16,7 @@ const questions = [
     type: 'list',
     name: 'payload',
     message: 'What would you like to add?',
-    choices: ['admin', 'user', 'customer-with-location', 'exit']
+    choices: ['admin', 'user', 'customer-with-location', 'customer-with-five-locations', 'exit']
   }
 ];
 
@@ -43,7 +44,14 @@ program
           await createCustomerWithLocation(fake_customerWithLocation, response);
           db.close();
           return process.exit(0);
-
+        case 'customer-with-five-locations':
+          let counter = 5;
+          while(counter){
+            await createCustomerWithLocation(fake_customerWithLocation, response)
+            counter--;
+          }
+          db.close();
+          return process.exit(0);
         case 'user':
           await register(fake_user(1), response);
           db.close();
