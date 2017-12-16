@@ -43,6 +43,7 @@ module.exports = async (req, res) => {
       { $push: { locations: savedLocation._id } },
       { new: true }
     );
+
     return res.status(200).json({ success: true, message: MESSAGES.LOCATION_SUCCESS });
   } catch (error) {
     console.log(error);
