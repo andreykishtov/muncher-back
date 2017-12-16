@@ -6,7 +6,7 @@ const fake_customerWithLocation = {
     customer: {
       info: {
         email: faker.internet.email(),
-        password: 'muncher',
+        password: 'muncher'
       },
       location: {
         name: faker.name.findName(),
@@ -26,9 +26,13 @@ const fake_customerWithLocation = {
 };
 
 const fake_user = {
-  email: faker.internet.email(),
-  password: 'muncher',
-  role: '1'
+  value:{
+    body: {
+      email: faker.internet.email(),
+      password: 'muncher',
+      role: 1
+    }
+  }
 };
 
 module.exports = {
