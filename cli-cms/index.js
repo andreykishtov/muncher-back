@@ -15,13 +15,13 @@ const questions = [
     type: 'list',
     name: 'payload',
     message: 'What would you like to add?',
-    choices: ['admin','user', 'customer-with-location', 'exit']
+    choices: ['admin', 'user', 'customer-with-location', 'exit']
   }
 ];
 
 const response = {
   json: function(e) {
-    log(chalk.green(JSON.stringify(e)));
+    log(chalk.green(JSON.stringify(e, null, 2)));
     return this;
   },
   status: function() {
