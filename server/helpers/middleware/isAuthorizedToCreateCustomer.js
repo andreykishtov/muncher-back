@@ -16,13 +16,12 @@ exports.canCreateUser = (req, res, next) => {
 
   const { role } = decodedToken.payload;
 
-  const isAdmin = role === ROLES.admin;
-  const isDev = role === ROLES.developer;
-  const isMod = role === ROLES.moderator;
+  const isAdmin = role === ROLES.ADMIN;
+  const isDev = role === ROLES.DEVELOPER;
+  const isMod = role === ROLES.MODERATOR;
 
   if(!isAdmin && !isDev && !isMod) {
     return res.status(401).json({ message: MESSAGE.NOT_AUTHORIZED });
   }
-
   return next();
 };
