@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const { createCustomerWithLocation } = require('../server/controllers/createCustomer/');
 const { register } = require('../server/controllers/users/');
 const { fake_customerWithLocation, fake_user } = require('./constants');
-const _ = require('lodash');
+
 
 mongoose.Promise = global.Promise;
 const db = mongoose.connect('mongodb://localhost/muncher', { useMongoClient: true });
@@ -14,7 +14,7 @@ const log = console.log;
 const questions = [
   {
     type: 'list',
-    name: 'payload',
+    name: 'add',
     message: 'What would you like to add?',
     choices: ['admin', 'user', 'customer-with-location', 'customer-with-five-locations', 'exit']
   }
@@ -39,7 +39,7 @@ program
   .action(async () => {
     try {
       const answer = await prompt(questions);
-      switch (answer.payload) {
+      switch (answer.add) {
         case 'customer-with-location':
           await createCustomerWithLocation(fake_customerWithLocation, response);
           db.close();
@@ -55,20 +55,20 @@ program
         case 'user':
           await register(fake_user(1), response);
           db.close();
-          return process.exit(0);
+          process.exit(0);
 
         case 'admin':
           await register(fake_user(6), response);
           db.close();
-          return process.exit(0);
+          process.exit(0);
 
         default:
-          log(chalk.red('No action taken'));
+          log(chalk.red('Existing - No action taken'));
           db.close();
-          return process.exit(0);
+          process.exit(0);
       }
     } catch (e) {
-      log(chalk.red('error adding customer with location'), e);
+      log(chalk.red('Error adding'), JSON.stringify(e, null, 2));
       db.close();
       process.exit(1);
     }
