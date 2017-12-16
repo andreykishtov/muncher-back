@@ -3,7 +3,7 @@ const Users = require('../../models/users');
 const signToken = require('./signToken');
 const roles = require('../../helpers/roles')
 module.exports = async (req, res) => {
-  const { email, password, role } = req.value.body;
+  let { email, password, role } = req.value.body;
 
   if(!email) {
     return res.status(200).json({ message: MESSAGES.EMAIL_REQUIRED });

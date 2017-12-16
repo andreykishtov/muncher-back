@@ -30,7 +30,6 @@ const fake_user = {
     body: {
       email: faker.internet.email(),
       password: 'muncher',
-      role: 1
     }
   }
 };
