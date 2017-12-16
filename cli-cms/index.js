@@ -15,7 +15,7 @@ const questions = [
     type: 'list',
     name: 'payload',
     message: 'What would you like to add?',
-    choices: ['user', 'customer-with-location', 'exit']
+    choices: ['admin','user', 'customer-with-location', 'exit']
   }
 ];
 
@@ -45,7 +45,12 @@ program
           return process.exit(0);
 
         case 'user':
-          await register(fake_user, response);
+          await register(fake_user(1), response);
+          db.close();
+          return process.exit(0);
+
+        case 'admin':
+          await register(fake_user(6), response);
           db.close();
           return process.exit(0);
 

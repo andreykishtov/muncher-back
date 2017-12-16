@@ -25,14 +25,15 @@ const fake_customerWithLocation = {
   }
 };
 
-const fake_user = {
+const fake_user = (role) => ({
   value:{
     body: {
       email: faker.internet.email(),
       password: 'muncher',
+      role: role
     }
   }
-};
+});
 
 module.exports = {
   fake_customerWithLocation,
