@@ -12,6 +12,7 @@ const fake_customerWithLocation = {
         name: faker.name.findName(),
         type: types[faker.random.number({ min: 0, max: 3 })],
         generalDesc: faker.lorem.sentence(),
+        imageUrl: faker.image.imageUrl(),
         address: {
           country: faker.address.country(),
           city: faker.address.city(),
