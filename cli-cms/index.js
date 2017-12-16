@@ -43,7 +43,7 @@ program
       switch (answer.add) {
         case 'customer-with-location':
           await createCustomerWithLocation(fake_customerWithLocation, response);
-          db.close();
+          await db.close();
           return process.exit(0);
         case '30-customers-with-locations':
           let counter = 30;
@@ -78,21 +78,21 @@ program
             counter--;
             log(chalk.cyan('Left', counter));
           }
-          db.close();
+          await db.close();
           return process.exit(0);
         case 'user':
           await register(fake_user(1), response);
-          db.close();
+          await db.close();
           process.exit(0);
 
         case 'admin':
           await register(fake_user(6), response);
-          db.close();
+          await db.close();
           process.exit(0);
 
         default:
           log(chalk.red('Existing - No action taken'));
-          db.close();
+          await db.close();
           process.exit(0);
       }
     } catch (e) {
