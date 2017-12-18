@@ -8,4 +8,4 @@ module.exports = {
   test: async (req, res) => {
     res.json({ secret: 'resource' });
   }
-}
+};
