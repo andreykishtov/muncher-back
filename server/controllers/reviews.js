@@ -1,5 +1,5 @@
 const Review = require('../models/reviews');
-const Locations = require('../models/locations');
+const Locations = require('../models/location');
 const User = require('../models/users');
 const MESSAGES = require('../helpers/messages');
 
