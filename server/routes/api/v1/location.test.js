@@ -5,28 +5,30 @@ const axios = require('axios');
 const faker = require('faker');
 const _ = require('lodash');
 
-let app;
-let port;
-let locationApi;
+let APP, PORT, LOCATION_API;
 
 describe('location route', () => {
   beforeEach(() => {
-    port = faker.random.number({ min: 4000, max: 6553 });
-    locationApi = `http://localhost:${port}/api/v1/location/`;
-    app = http.createServer(server).listen(port);
+    PORT = faker.random.number({ min: 4000, max: 6553 });
+    LOCATION_API = `http://localhost:${PORT}/api/v1/location/`;
+    APP = http.createServer(server).listen(PORT);
   });
 
   afterEach(async () => {
     await Location.remove({});
   });
 
+  afterEach(() => {
+    APP.close();
+  });
+
   test('should return empty array when no location present', async () => {
-    const { data } = await axios.get(`http://localhost:${port}/api/v1/location/`);
+    const { data } = await axios.get(LOCATION_API);
     expect(data.message).toBe('success');
     expect(data.locations.length).toBe(0);
   });
 
-  test('should return five location', async () => {
+  test('should return all locations (5)', async () => {
     let location;
     _.times(5, async () => {
       location = {
@@ -45,14 +47,14 @@ describe('location route', () => {
       };
       await new Location(location).save();
     });
-    const { data } = await axios.get(`http://localhost:${port}/api/v1/location/`);
+    const { data } = await axios.get(LOCATION_API);
     expect(data.message).toBe('success');
     expect(data.locations.length).toBe(5);
   });
 
   test('should return one location with correct data', async () => {
     const NEW_LOCATION = await new Location({ name: faker.address.streetName() }).save();
-    const { data } = await axios.get(`http://localhost:${port}/api/v1/location/`);
+    const { data } = await axios.get(LOCATION_API);
     const { locations, updateDate, createDate } = data;
     expect(data.message).toBe('success');
     expect(_.first(locations).name).toBe(NEW_LOCATION.name);

@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --forceExit",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
     "start": "cross-env NODE_ENV=prod node index.js",
     "dev": "cross-env NODE_ENV=prod nodemon index.js",
     "cms": "node cli-cms/index.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
@@ -30,7 +31,6 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "faker": "^4.1.0",
     "axios": "^0.17.1",
     "babel-eslint": "^8.0.1",
     "commander": "^2.12.2",
@@ -39,6 +39,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
+    "faker": "^4.1.0",
     "inquirer": "^4.0.1",
     "jest": "^22.0.4",
     "nodemon": "^1.12.1"

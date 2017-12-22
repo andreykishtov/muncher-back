@@ -7,10 +7,6 @@ const LocationsSchema = new Schema({
   type: String, //[takeaway,restaurant,delevaryOnly]
   generalDesc: String,
   imageUrl: String,
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: 'user'
-  },
   address: {
     country: String,
     city: String,
@@ -25,6 +21,10 @@ const LocationsSchema = new Schema({
       ref: 'review'
     }
   ],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  },
   createDate: { type: Date, default: Date.now },
   updateDate: { type: Date, default: Date.now }
 });
