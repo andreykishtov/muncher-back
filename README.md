@@ -3,9 +3,6 @@
 # Muncher API
 ---
 
-Nodejs (8.9)
-Passport
-JWT
-Joi
-Mongodb
-Mongoose
+- Nodejs (9.3)
+- Express
+- Mongoose
