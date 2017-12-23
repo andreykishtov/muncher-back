@@ -55,10 +55,12 @@ describe('location', () => {
         };
         await new Location(location).save();
       });
-      const { data } = await axios.get(LOCATION_API);
+      setTimeout(async() => {
+        const { data } = await axios.get(LOCATION_API);
 
-      expect(data.message).toBe('success');
-      expect(data.locations.length).toBe(5);
+        expect(data.message).toBe('success');
+        expect(data.locations.length).toBe(5);
+      }, 1000);
     });
   });
 
