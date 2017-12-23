@@ -4,6 +4,7 @@ node_js:
 services:
   - mongodb
 script:
+  - sleep 2
   - npm test
 cache:
   directories:
