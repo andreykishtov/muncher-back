@@ -55,7 +55,7 @@ describe('location', () => {
         };
         await new Location(location).save();
       });
-      setTimeout(async() => {
+     return setTimeout(async() => {
         const { data } = await axios.get(LOCATION_API);
 
         expect(data.message).toBe('success');
