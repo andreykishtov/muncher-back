@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test ava",
+    "precommit": "npm test",
+    "test": "cross-env NODE_ENV=test jest --forceExit",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
     "start": "cross-env NODE_ENV=prod node index.js",
     "dev": "cross-env NODE_ENV=prod nodemon index.js",
     "cms": "node cli-cms/index.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
@@ -19,7 +21,6 @@
     "cross-env": "^5.0.5",
     "express": "^4.16.2",
     "express-promise-router": "^2.0.0",
-    "faker": "^4.1.0",
     "joi": "^11.3.4",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
@@ -28,12 +29,10 @@
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.0",
-    "passport-local": "^1.0.0",
-    "semantic-ui-react-numberpicker": "0.0.1-b"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "ava-http": "^0.2.1",
+    "axios": "^0.17.1",
     "babel-eslint": "^8.0.1",
     "commander": "^2.12.2",
     "eslint": "^4.9.0",
@@ -41,8 +40,10 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
+    "faker": "^4.1.0",
+    "husky": "^0.14.3",
     "inquirer": "^4.0.1",
-    "nodemon": "^1.12.1",
-    "request": "^2.83.0"
+    "jest": "^22.0.4",
+    "nodemon": "^1.12.1"
   }
 }
