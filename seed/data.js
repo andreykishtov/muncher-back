@@ -18,7 +18,7 @@ const users = _.times(6, index => ({
   userName: faker.internet.userName()
 }));
 
-const locations = _.times(25, () => ({
+const locations = _.times(100, () => ({
   name: faker.lorem.sentence(),
   generalDesc: faker.lorem.paragraph(),
   imageUrl: faker.image.imageUrl(),
@@ -34,7 +34,7 @@ const locations = _.times(25, () => ({
   owner: '5a3ec1d9cc90e7187d1d8877'
 }));
 
-const reviews = _.times(25, () => ({
+const reviews = _.times(100, () => ({
   title: faker.lorem.sentence(),
   content: faker.lorem.paragraph(),
   rating: faker.random.number({ min: 0, max: 5 }),
