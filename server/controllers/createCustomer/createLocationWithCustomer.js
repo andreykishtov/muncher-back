@@ -1,6 +1,6 @@
 const MESSAGES = require('../../helpers/messages');
 const Users = require('../../models/users');
-const Location = require('../../models/location');
+const Location = require('../../models/locations');
 const Review = require('../../models/reviews');
 const roles = require('../../helpers/roles');
 const isUndefined = require('lodash/isUndefined');
