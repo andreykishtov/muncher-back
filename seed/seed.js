@@ -16,9 +16,9 @@ seeder.connect('mongodb://localhost/muncher', function() {
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data, async () => {
       try {
-         reviews = await Review.find({});
-         users = await Users.find({});
-         locations = await Location.find({});
+        reviews = await Review.find({});
+        users = await Users.find({});
+        locations = await Location.find({});
 
         // add all locations to Owner type
         const ownerType = users[1];
@@ -31,28 +31,25 @@ seeder.connect('mongodb://localhost/muncher', function() {
         // update each location with owner id
         _.forEach(locations, location => {
           try {
-        return Location.findByIdAndUpdate({ _id: location._id }, { owner: ownerType._id })
-
+            return Location.findByIdAndUpdate({ _id: location._id }, { owner: ownerType._id });
           } catch (error) {
-            console.log('error at updating location',error);
+            console.log('error at updating location', error);
           }
-        })
-
-        // for each review add the user type as its owner and add location id
-      _.forEach(reviews, (review, index) => {
-           try{
-            return Review.findByIdAndUpdate({ _id: review._id }, { userId: userType._id , location: locations[index]._id })
-           }
-           catch(e){
-             console.log(`error at updating review index: ${index}, error: ${e}`);
-           }
         });
 
+        // for each review add the user type as its owner and add location id
+        _.forEach(reviews, (review, index) => {
+          try {
+            return Review.findByIdAndUpdate({ _id: review._id }, { userId: userType._id, location: locations[index]._id });
+          } catch (e) {
+            console.log(`error at updating review index: ${index}, error: ${e}`);
+          }
+        });
       } catch (e) {
         console.log(e);
       }
 
-        seeder.disconnect();
+      seeder.disconnect();
     });
   });
 });
