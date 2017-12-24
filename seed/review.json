@@ -1,0 +1,10 @@
+{
+  "title":"fist review",
+  "content":"hello from first seed",
+  "rating":4,
+  "userId":  {
+    "type": "Schema.Types.ObjectId",
+    "ref": "review"
+  },
+  "location":"location"
+}

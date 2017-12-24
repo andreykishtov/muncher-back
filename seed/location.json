@@ -1,0 +1,15 @@
+{
+ "name": "first Location",
+  "generalDesc": "Hello world and stuff",
+  "imageUrl": "http://",
+  "address": {
+    "country": "he",
+    "city": "jo",
+    "street": "123 23",
+    "number": "33",
+    "lat": 12.222,
+    "lng": 13.222
+  },
+  "reviews": ["review"],
+  "owner": "user"
+}

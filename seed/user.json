@@ -1,0 +1,16 @@
+{
+  "method": "local",
+  "local": {
+    "email":"bob123@gmail.com",
+    "password": "123456"
+  },
+  "imageUrl": "http://image.com/1",
+  "name":{
+    "first":"bob",
+    "last": "seed"
+  },
+  "reviews":[],
+  "locations":[],
+  "role":3,
+  "userName":"bob-seed"
+}

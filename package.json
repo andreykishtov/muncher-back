@@ -9,7 +9,8 @@
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "start": "cross-env NODE_ENV=prod node index.js",
     "dev": "cross-env NODE_ENV=prod nodemon index.js",
-    "cms": "node cli-cms/index.js"
+    "cms": "node cli-cms/index.js",
+    "seed": "node seed/seed.js"
   },
   "author": "",
   "license": "MIT",
@@ -44,6 +45,7 @@
     "husky": "^0.14.3",
     "inquirer": "^4.0.1",
     "jest": "^22.0.4",
+    "mongoose-seed": "^0.4.0",
     "nodemon": "^1.12.1"
   }
 }
